@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import React from "react";
+import { motion } from "motion/react";
+import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 
 export const Hero = () => {
   return (
@@ -24,18 +24,20 @@ export const Hero = () => {
             confort modern.
           </h1>
           <p className="text-lg text-muted-foreground max-w-md mb-12 leading-relaxed font-sans font-light">
-            First Concept transformă spațiile rezidențiale în refugii de liniște, 
-            punând accent pe texturi naturale și lumină arhitecturală.
+            Transformăm locuințele în refugii de liniște și
+            echilibru, iar spațiile destinate activităților comerciale în medii
+            funcționale cu identitate clară, definite de texturi naturale și
+            lumină arhitecturală.
           </p>
           <div className="flex flex-wrap gap-8 items-center">
-            <a 
-              href="#gallery" 
+            <a
+              href="#gallery"
               className="px-10 py-4 bg-primary text-primary-foreground font-sans uppercase tracking-[0.2em] text-[11px] font-semibold hover:bg-accent transition-all duration-500 rounded-full"
             >
               Portofoliu
             </a>
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className="font-sans uppercase tracking-[0.2em] text-[11px] font-semibold hover:text-accent transition-colors flex items-center gap-3 group"
             >
               Povestea Noastră
@@ -43,17 +45,17 @@ export const Hero = () => {
             </a>
           </div>
         </motion.div>
-        
+
         <div className="lg:col-span-6 lg:col-start-7 xl:col-span-7 relative">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
             className="relative aspect-[4/5] md:aspect-[3/2] lg:aspect-square overflow-hidden rounded-[2rem] shadow-2xl"
           >
-            <ImageWithFallback 
-              src="https://images.unsplash.com/photo-1700713041101-0b2a46417c15" 
-              alt="Interior Concept" 
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1700713041101-0b2a46417c15"
+              alt="Interior Concept"
               className="w-full h-full object-cover"
             />
             {/* Soft overlay for texture */}

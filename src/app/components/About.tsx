@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
@@ -37,7 +36,7 @@ export const About = () => {
             
             <div className="space-y-6">
               <p className="text-muted-foreground leading-relaxed">
-                Cu o experiență de peste 5 ani și 30 de proiecte finalizate cu succes, am învățat că un design reușit nu este cel care urmează orbește tendințele, ci cel care reflectă personalitatea celor care îl locuiesc.
+                Cu o experiență de peste 8 ani și 150 de proiecte finalizate cu succes, am învățat că un design reușit nu este cel care urmează orbește tendințele, ci cel care reflectă personalitatea celor care îl locuiesc.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 Fiecare proiect "First Concept" este o colaborare strânsă, unde ideile tale prind contur tehnic și estetic, transformând o simplă locuință în "acasă".
@@ -46,11 +45,11 @@ export const About = () => {
 
             <div className="grid grid-cols-2 gap-12 pt-8">
               <div className="space-y-1">
-                <p className="font-serif text-4xl text-primary">05</p>
+                <p className="font-serif text-4xl text-primary">8</p>
                 <p className="font-sans text-[9px] uppercase tracking-[0.2em] text-accent font-bold">Ani de Expertiză</p>
               </div>
               <div className="space-y-1">
-                <p className="font-serif text-4xl text-primary">30+</p>
+                <p className="font-serif text-4xl text-primary">150+</p>
                 <p className="font-sans text-[9px] uppercase tracking-[0.2em] text-accent font-bold">Viziuni Realizate</p>
               </div>
             </div>

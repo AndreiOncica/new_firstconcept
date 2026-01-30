@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navbar } from '@/app/components/Navbar';
 import { Hero } from '@/app/components/Hero';
 import { Gallery } from '@/app/components/Gallery';

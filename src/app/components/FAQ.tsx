@@ -5,7 +5,7 @@ import { Plus, Minus, ArrowUpRight } from 'lucide-react';
 const faqs = [
   {
     q: "Care este primul pas într-un proiect?",
-    a: "Începem întotdeauna cu o discuție (discovery call) pentru a ne cunoaște și a înțelege stilul tău de viață. Ulterior, realizăm un releveu al spațiului și stabilim conceptul general prin moodboard-uri inspiraționale."
+    a: "Începem întotdeauna cu o discuție (discovery call) pentru a ne cunoaște și a înțelege stilul tău de viață. Ulterior, realizăm un releveu al spațiului și stabilim conceptul general."
   },
   {
     q: "Cât de implicat trebuie să fiu în proces?",

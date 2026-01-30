@@ -1,13 +1,14 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Mail, Phone, Instagram, Facebook, Send, MapPin } from 'lucide-react';
-import { toast } from 'sonner';
+import React, { useEffect } from "react";
+import { motion } from "motion/react";
+import { Mail, Phone, Instagram, Facebook, Send, MapPin } from "lucide-react";
+import { toast } from "sonner";
 
 export const Contact = () => {
-  const [fullName, setFullName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [projectSubject, setProjectSubject] = React.useState('Design Rezidențial');
-  const [vision, setVision] = React.useState('');
+  const [fullName, setFullName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [projectSubject, setProjectSubject] =
+    React.useState("Design Rezidențial");
+  const [vision, setVision] = React.useState("");
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,9 +18,9 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch('/api/contact.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         // important dacă vei pune cookie/csrf mai târziu:
         // credentials: 'include',
         body: JSON.stringify({
@@ -27,7 +28,7 @@ export const Contact = () => {
           email,
           projectSubject,
           vision,
-          website: '' // honeypot
+          website: "", // honeypot
         }),
       });
 
@@ -40,20 +41,76 @@ export const Contact = () => {
         throw new Error(msg);
       }
 
-      toast.success('Mesajul a fost trimis! Anca te va contacta în curând.');
+      toast.success("Mesajul a fost trimis! Revenim în curând.");
+
+      // clear any saved prefill after a successful submit
+      try {
+        localStorage.removeItem("fc_contact_message_prefill");
+      } catch {
+        // ignore
+      }
 
       // reset
-      setFullName('');
-      setEmail('');
-      setProjectSubject('Design Rezidențial');
-      setVision('');
+      setFullName("");
+      setEmail("");
+      setProjectSubject("Design Rezidențial");
+      setVision("");
     } catch (err: any) {
-      toast.error(err?.message || 'Nu am putut trimite mesajul. Încearcă din nou.');
+      toast.error(
+        err?.message || "Nu am putut trimite mesajul. Încearcă din nou.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  useEffect(() => {
+    const applyPrefill = () => {
+      try {
+        const prefill = localStorage.getItem("fc_contact_message_prefill");
+        if (!prefill) return;
+
+        const lastPrefill = localStorage.getItem(
+          "fc_contact_message_last_prefill",
+        );
+
+        // Prefill if the field is empty OR if it still contains the previous auto-prefill.
+        // This way, switching projects updates the message, but user edits are preserved.
+        setVision((prev) => {
+          const prevTrimmed = prev?.trim() ?? "";
+          const isEmpty = prevTrimmed.length === 0;
+          const isStillAutoPrefilled =
+            !!lastPrefill && prev === lastPrefill;
+
+          if (isEmpty || isStillAutoPrefilled) return prefill;
+          return prev;
+        });
+
+        // Track the last auto-prefill we applied
+        localStorage.setItem("fc_contact_message_last_prefill", prefill);
+
+        // Remove so it doesn't keep re-applying
+        localStorage.removeItem("fc_contact_message_prefill");
+      } catch {
+        // ignore
+      }
+    };
+
+    // run once on mount
+    applyPrefill();
+
+    // run when Gallery dispatches the event
+    window.addEventListener(
+      "fc_contact_prefill",
+      applyPrefill as EventListener,
+    );
+    return () => {
+      window.removeEventListener(
+        "fc_contact_prefill",
+        applyPrefill as EventListener,
+      );
+    };
+  }, []);
   return (
     <section id="contact" className="py-32 bg-[#FCFAF7]">
       <div className="container mx-auto px-6">
@@ -84,15 +141,31 @@ export const Contact = () => {
                   transition={{ delay: 0.2 }}
                   className="text-muted-foreground text-lg font-light leading-relaxed max-w-md"
                 >
-                  Fiecare proiect începe cu o poveste. Abia aștept să o aflu pe a ta și să construim împreună spațiul la care visezi.
+                  Fiecare proiect începe cu o poveste. Abia aștept să o aflu pe
+                  a ta și să construim împreună spațiul la care visezi.
                 </motion.p>
               </div>
 
               <div className="space-y-10">
                 {[
-                  { icon: Mail, label: "Email", value: "hello@firstconcept.ro", href: "mailto:hello@firstconcept.ro" },
-                  { icon: Phone, label: "Telefon", value: "+40 722 000 000", href: "tel:+40722000000" },
-                  { icon: MapPin, label: "Locație", value: "București, România", href: "#" }
+                  {
+                    icon: Mail,
+                    label: "Email",
+                    value: "hello@firstconcept.ro",
+                    href: "mailto:hello@firstconcept.ro",
+                  },
+                  {
+                    icon: Phone,
+                    label: "Telefon",
+                    value: "+40 722 000 000",
+                    href: "tel:+40722000000",
+                  },
+                  {
+                    icon: MapPin,
+                    label: "Locație",
+                    value: "București, România",
+                    href: "#",
+                  },
                 ].map((item, index) => (
                   <motion.a
                     key={index}
@@ -103,11 +176,18 @@ export const Contact = () => {
                     className="flex items-center gap-8 group"
                   >
                     <div className="w-14 h-14 rounded-2xl bg-white border border-border flex items-center justify-center shrink-0 group-hover:border-accent group-hover:bg-accent/5 transition-all duration-500">
-                      <item.icon size={20} className="text-accent transition-transform duration-500 group-hover:scale-110" />
+                      <item.icon
+                        size={20}
+                        className="text-accent transition-transform duration-500 group-hover:scale-110"
+                      />
                     </div>
                     <div>
-                      <p className="font-sans text-[9px] uppercase tracking-widest text-muted-foreground mb-1.5">{item.label}</p>
-                      <p className="font-serif text-xl group-hover:text-accent transition-colors">{item.value}</p>
+                      <p className="font-sans text-[9px] uppercase tracking-widest text-muted-foreground mb-1.5">
+                        {item.label}
+                      </p>
+                      <p className="font-serif text-xl group-hover:text-accent transition-colors">
+                        {item.value}
+                      </p>
                     </div>
                   </motion.a>
                 ))}
@@ -138,10 +218,15 @@ export const Contact = () => {
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-[5rem] -mr-8 -mt-8" />
 
-                <form onSubmit={handleSubmit} className="relative z-10 space-y-12">
+                <form
+                  onSubmit={handleSubmit}
+                  className="relative z-10 space-y-12"
+                >
                   <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
                     <div className="space-y-4">
-                      <label className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent font-bold">Nume Complet</label>
+                      <label className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent font-bold">
+                        Nume Complet
+                      </label>
                       <input
                         type="text"
                         required
@@ -153,7 +238,9 @@ export const Contact = () => {
                     </div>
 
                     <div className="space-y-4">
-                      <label className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent font-bold">Email</label>
+                      <label className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent font-bold">
+                        Email
+                      </label>
                       <input
                         type="email"
                         required
@@ -166,7 +253,9 @@ export const Contact = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent font-bold">Subiect Proiect</label>
+                    <label className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent font-bold">
+                      Subiect Proiect
+                    </label>
                     <div className="relative">
                       <select
                         value={projectSubject}
@@ -185,7 +274,9 @@ export const Contact = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <label className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent font-bold">Viziunea Ta</label>
+                    <label className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent font-bold">
+                      Viziunea Ta
+                    </label>
                     <textarea
                       rows={4}
                       required
@@ -214,9 +305,14 @@ export const Contact = () => {
                       disabled={isSubmitting}
                       className="group relative inline-flex items-center justify-center gap-6 py-6 px-14 bg-primary text-primary-foreground font-sans uppercase tracking-[0.3em] text-[11px] font-bold hover:bg-accent transition-all duration-500 rounded-full overflow-hidden shadow-lg shadow-primary/10 hover:shadow-accent/20 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <span className="relative z-10">{isSubmitting ? 'Se trimite...' : 'Trimite Mesajul'}</span>
+                      <span className="relative z-10">
+                        {isSubmitting ? "Se trimite..." : "Trimite Mesajul"}
+                      </span>
                       <div className="relative z-10 w-8 h-px bg-primary-foreground/30 group-hover:w-10 transition-all duration-500" />
-                      <Send size={14} className="relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      <Send
+                        size={14}
+                        className="relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                      />
                     </button>
                   </div>
                 </form>
