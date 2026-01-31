@@ -51,7 +51,7 @@ export const Footer = () => {
 
         <div className="pt-12 border-t border-border flex flex-col lg:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            <p>© {currentYear} First Concept Studio. All rights reserved.</p>
+            <p>© {currentYear} First Concept. All rights reserved.</p>
             <div className="flex gap-6">
               <button
                 type="button"
@@ -66,15 +66,15 @@ export const Footer = () => {
           {/* ANPC Logos/Buttons */}
           <div className="flex items-center gap-4">
             <a
-              href="https://reclamatiisal.anpc.ro/"
+              href="https://anpc.ro/ce-este-sal/"
               target="_blank"
               rel="noopener noreferrer"
               className="opacity-40 hover:opacity-100 transition-opacity"
             >
               <img
-                src="https://anpc.ro/wp-content/uploads/2022/03/anpc-sal.png"
+                src="../../../public/SAL-logo.png"
                 alt="ANPC SAL"
-                className="h-8 brightness-0"
+                className="h-8"
               />
             </a>
             <a
@@ -84,9 +84,9 @@ export const Footer = () => {
               className="opacity-40 hover:opacity-100 transition-opacity"
             >
               <img
-                src="https://anpc.ro/wp-content/uploads/2022/03/anpc-sol.png"
+                src="../../../public/SOL-logo.png"
                 alt="ANPC SOL"
-                className="h-8 brightness-0"
+                className="h-8 "
               />
             </a>
           </div>

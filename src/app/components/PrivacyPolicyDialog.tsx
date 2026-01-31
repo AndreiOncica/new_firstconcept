@@ -53,12 +53,12 @@ function PolicyContent() {
           1. Cine suntem
         </h3>
         <p className="text-muted-foreground font-light">
-          First Concept Studio („noi”) prelucrează datele tale cu caracter personal atunci când ne
+          First Concept („noi”) prelucrează datele tale cu caracter personal atunci când ne
           contactezi prin formularul de pe site. În această politică explicăm ce date colectăm, de ce,
           cât timp le păstrăm și ce drepturi ai.
         </p>
         <p className="text-muted-foreground font-light">
-          Operator de date: <strong>First Concept Studio</strong><br />
+          Operator de date: <strong>First Concept</strong><br />
           Email contact: <strong>contact@firstconcept.ro</strong>
         </p>
       </section>

@@ -393,7 +393,7 @@ export const Gallery = () => {
                     try {
                       localStorage.setItem(
                         "fc_contact_message_prefill",
-                        `Vreau un proiect similar cu ${selectedProject.title}`,
+                        `Buna ziua, \nDoresc un proiect similar cu ${selectedProject.title}`,
                       );
 
                       // notify Contact (same tab) to apply the prefill
