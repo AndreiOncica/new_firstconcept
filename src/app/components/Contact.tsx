@@ -151,8 +151,8 @@ export const Contact = () => {
                   {
                     icon: Mail,
                     label: "Email",
-                    value: "hello@firstconcept.ro",
-                    href: "mailto:hello@firstconcept.ro",
+                    value: "contact@firstconcept.ro",
+                    href: "mailto:contact@firstconcept.ro",
                   },
                   {
                     icon: Phone,

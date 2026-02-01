@@ -72,7 +72,7 @@ export const Footer = () => {
               className="opacity-40 hover:opacity-100 transition-opacity"
             >
               <img
-                src="../../../public/SAL-logo.png"
+                src="/SAL-logo.png"
                 alt="ANPC SAL"
                 className="h-8"
               />
@@ -84,7 +84,7 @@ export const Footer = () => {
               className="opacity-40 hover:opacity-100 transition-opacity"
             >
               <img
-                src="../../../public/SOL-logo.png"
+                src="/SOL-logo.png"
                 alt="ANPC SOL"
                 className="h-8 "
               />

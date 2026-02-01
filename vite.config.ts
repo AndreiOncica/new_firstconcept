@@ -10,15 +10,15 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://www.firstconcept.ro",
-        changeOrigin: true,
-        secure: true,
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       target: "https://www.firstconcept.ro",
+  //       changeOrigin: true,
+  //       secure: true,
+  //     },
+  //   },
+  // },
   resolve: {
     alias: {
       // Alias @ to the src directory

@@ -62,7 +62,7 @@ export const Gallery = () => {
         const API = import.meta.env.VITE_API_BASE ?? "";
 
         const res = await fetch(
-          "https://www.firstconcept.ro/api/projects.php",
+          "/api/projects.php",
           { cache: "no-store" },
         );
         if (!res.ok)

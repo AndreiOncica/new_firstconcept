@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, Minus, ArrowUpRight } from 'lucide-react';
 
@@ -18,10 +18,6 @@ const faqs = [
   {
     q: "Ce se întâmplă dacă bugetul meu este limitat?",
     a: "Vom stabili prioritățile împreună. Rolul meu este să optimizez costurile, alegând unde merită investit în materiale de lungă durată și unde putem găsi soluții creative și accesibile."
-  },
-  {
-    q: "Oferiți și servicii de implementare (șantier)?",
-    a: "Da, oferim management de proiect pentru a ne asigura că viziunea de pe hârtie devine realitate. Suntem puntea de legătură între tine și echipele de constructori."
   }
 ];
 

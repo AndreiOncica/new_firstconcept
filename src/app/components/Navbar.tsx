@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { Logo } from '@/app/components/Logo';
@@ -122,7 +122,7 @@ export const Navbar = () => {
               className="w-full py-5 bg-primary text-primary-foreground text-center font-sans text-xs uppercase tracking-widest font-bold rounded-full shadow-xl"
               onClick={() => setIsOpen(false)}
             >
-              Contactează-mă
+              Hai să discutăm
             </motion.a>
           </motion.div>
         )}
